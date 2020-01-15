@@ -1,7 +1,7 @@
 defmodule Membrane.LibdtlssrtpWrapper.MixProject do
   use Mix.Project
 
-  @version "0.3.0"
+  @version "0.1.0"
 
   def project do
     [
@@ -25,9 +25,7 @@ defmodule Membrane.LibdtlssrtpWrapper.MixProject do
 
   defp deps do
     [
-      {:bundlex, "~> 0.2.7"},
-      {:membrane_common_c, "~> 0.3.0"},
-      {:membrane_core, "~> 0.5.0"}
+      {:bundlex, "~> 0.2.7"}
     ]
   end
 end
