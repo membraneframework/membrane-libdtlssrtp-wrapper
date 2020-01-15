@@ -26,7 +26,6 @@ defmodule Membrane.LibdtlssrtpWrapper.MixProject do
   defp deps do
     [
       {:bundlex, "~> 0.2.7"},
-      # {:bundlex, path: "/Users/feliks/membrane/bundlex"},
       {:membrane_common_c, "~> 0.3.0"},
       {:membrane_core, "~> 0.5.0"}
     ]
