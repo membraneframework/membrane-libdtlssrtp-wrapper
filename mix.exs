@@ -8,18 +8,8 @@ defmodule Membrane.LibdtlssrtpWrapper.MixProject do
       app: :membrane_libdtlssrtp_wrapper,
       version: @version,
       elixir: "~> 1.9",
-      elixirc_paths: elixirc_paths(Mix.env()),
       compilers: [:bundlex] ++ Mix.compilers(),
       deps: deps()
-    ]
-  end
-
-  defp elixirc_paths(:test), do: ["lib", "test/support"]
-  defp elixirc_paths(_env), do: ["lib"]
-
-  def application do
-    [
-      extra_applications: []
     ]
   end
 
