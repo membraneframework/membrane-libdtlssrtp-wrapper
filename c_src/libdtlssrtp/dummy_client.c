@@ -30,7 +30,6 @@
 
 char *optarg;
 int optind, opterr, optopt;
-
 char dummy_message[RTP_PACKET_LEN];
 
 const char usage_format[] = "Usage: %s [options] [address] [port]\n"
