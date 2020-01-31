@@ -15,6 +15,8 @@
    License along with the DTLS-SRTP library; if not, see
    <http://www.gnu.org/licenses/>.  */
 
+#define _POSIX_C_SOURCE 200809L
+
 #include "dummy_client.h"
 #include "dsink_udp.h"
 #include "dtls_srtp.h"

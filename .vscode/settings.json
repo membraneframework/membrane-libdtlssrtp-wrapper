@@ -1,5 +1,7 @@
 {
     "files.associations": {
-        "dsink_udp.h": "c"
+        "dsink_udp.h": "c",
+        "signal.h": "c",
+        "_sigset_t.h": "c"
     }
 }
