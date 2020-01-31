@@ -19,6 +19,7 @@
 #include "dsink_udp.h"
 #include "dtls_srtp.h"
 #include <arpa/inet.h>
+#include <getopt.h>
 #include <signal.h>
 #include <stdlib.h>
 #include <sys/select.h>
@@ -26,6 +27,9 @@
 #include <unistd.h>
 
 #define RTP_PACKET_LEN 8192
+
+char *optarg;
+int optind, opterr, optopt;
 
 char dummy_message[RTP_PACKET_LEN];
 
