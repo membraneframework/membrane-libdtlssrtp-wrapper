@@ -259,12 +259,10 @@ int get_sock_fd(const char *local_addr, in_port_t local_port, fd_t *sock_fd) {
 }
 
 int mainloop(fd_t fd, SSL_CTX *cfg, const struct timeval *timeout,
-             const uaddr *peer, int ei_fd, erlang_pid *to,
-             const char *node_name,
-             void (*forward_packet)(int, erlang_pid *, const char *, uint8_t *,
-                                    unsigned int),
-             void (*forward_key_ptrs)(int, erlang_pid *, const char *,
-                                      struct srtp_key_ptrs *)) {
+             const uaddr *peer, void *args,
+             void (*forward_packet)(void *, const uint8_t *, unsigned int),
+             void (*forward_key_ptrs)(void *, const uint8_t *, const uint8_t *,
+                                      const uint8_t *, const uint8_t *)) {
 
   int ret = EXIT_FAILURE;
   // the side without a valid peer is considered the passive side.
@@ -335,7 +333,8 @@ int mainloop(fd_t fd, SSL_CTX *cfg, const struct timeval *timeout,
           }
           srtp_key_ptrs ptrs = {0, 0, 0, 0};
           srtp_key_material_extract(km, &ptrs);
-          (*forward_key_ptrs)(ei_fd, to, node_name, &ptrs);
+          (*forward_key_ptrs)(args, ptrs.localkey, ptrs.remotekey,
+                              ptrs.localsalt, ptrs.remotesalt);
           key_material_free(km);
           if (peer == NULL) {
             // demo works as server.
@@ -347,7 +346,7 @@ int mainloop(fd_t fd, SSL_CTX *cfg, const struct timeval *timeout,
           }
         }
       } else {
-        (*forward_packet)(ei_fd, to, node_name, payload, RTP_PACKET_LEN);
+        (*forward_packet)(args, payload, RTP_PACKET_LEN);
       }
     } else {
       // no packet arrived, selected() returns for timeout.
