@@ -1,4 +1,6 @@
 #include "dsink_udp.h"
+#pragma once
+
 #include "dtls_srtp.h"
 #include <arpa/inet.h>
 #include <ei.h>
